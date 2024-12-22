@@ -1,0 +1,24 @@
+@if (hasError) {
+  <p>Please start your Backend with <code>npm run start:api</code> and reload the page</p>
+} @else {
+  <cdk-table
+    [dataSource]="source"
+    matSort
+    (matSortChange)="applyDirection($event)"
+  >
+    <tr cdk-header-row *cdkHeaderRowDef="tableHeaders"></tr>
+    <tr cdk-row *cdkRowDef="let row; columns: tableHeaders"></tr>
+
+    <ng-container cdkColumnDef="name">
+      <th cdk-header-cell *cdkHeaderCellDef>Name</th>
+      <td cdk-cell *cdkCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="value">
+      <th cdk-header-cell mat-sort-header *cdkHeaderCellDef>Value</th>
+      <td cdk-cell *cdkCellDef="let element">{{ element.value }}</td>
+    </ng-container>
+  </cdk-table>
+}
+
+
